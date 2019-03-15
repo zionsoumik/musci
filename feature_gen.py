@@ -11,8 +11,6 @@ import shutil
 directory_labels = 'C:/Users/deyso/PycharmProjects/sound/'
 
 # Set directory path where downloaded mp3 files are stored in a COMMON FOLDER
-# i.e. all subfolders have been removed using the following bash script:
-# find . -mindepth 2 -type f -print -exec mv {} . \;
 directory_files = "C:/Users/deyso/PycharmProjects/sound/mp3folder/"
 
 
