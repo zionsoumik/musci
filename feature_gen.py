@@ -82,14 +82,14 @@ tags_distro = annotations.sum(axis=0)
 tags_distro.sort_values(axis=0, inplace=True, ascending = False)
 
 #find 50 top tags
-topindex, topvalues = list(tags_distro.index[:50]), tags_distro.values[:50]
+topindex, topvalues = list(tags_distro.index[:n]), tags_distro.values[:n]
 
 # list of columns to remove from annotation file (not common labels)
-rem_cols_index =list(tags_distro.index[50:])
+rem_cols_index =list(tags_distro.index[n:])
 #check how many columns we are about to remove
 len(rem_cols_index) 
 
-# keep only the 50 most common tags
+# keep only the n most common tags
 annotations.drop(rem_cols_index, axis=1, inplace=True)
 
 # bind back clip_id and mp3_path
