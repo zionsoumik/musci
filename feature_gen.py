@@ -11,6 +11,8 @@ import shutil
 directory_labels = 'C:/Users/deyso/PycharmProjects/sound/'
 
 # Set directory path where downloaded mp3 files are stored in a COMMON FOLDER
+# i.e. all subfolders have been removed using the following bash script:
+# find . -mindepth 2 -type f -print -exec mv {} . \;
 directory_files = "C:/Users/deyso/PycharmProjects/sound/mp3folder/"
 
 
@@ -82,14 +84,14 @@ tags_distro = annotations.sum(axis=0)
 tags_distro.sort_values(axis=0, inplace=True, ascending = False)
 
 #find 50 top tags
-topindex, topvalues = list(tags_distro.index[:n]), tags_distro.values[:n]
+topindex, topvalues = list(tags_distro.index[:50]), tags_distro.values[:50]
 
 # list of columns to remove from annotation file (not common labels)
-rem_cols_index =list(tags_distro.index[n:])
+rem_cols_index =list(tags_distro.index[50:])
 #check how many columns we are about to remove
 len(rem_cols_index) 
 
-# keep only the n most common tags
+# keep only the 50 most common tags
 annotations.drop(rem_cols_index, axis=1, inplace=True)
 
 # bind back clip_id and mp3_path
