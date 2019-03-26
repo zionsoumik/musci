@@ -55,9 +55,10 @@ def main():
     #print(yTest)
     trainX, testX, yTrain, yTest = cross_validation.train_test_split(X, Y, test_size=0.1, random_state=0)  #test train split
 
-    vectorizer = feature_extraction.text.TfidfVectorizer()
-    liwc_scaler = preprocessing.StandardScaler()
-    unigrams = vectorizer.fit_transform(trainX["text"].values.astype("U")).toarray()
+    #vectorizer = feature_extraction.text.TfidfVectorizer()
+    #liwc_scaler = preprocessing.StandardScaler()
+    #unigrams = vectorizer.fit_transform(trainX["text"].values.astype("U")).toarray()
+    S = librosa.feature.melspectrogram(x, sr=sr, n_fft=4096, hop_length=hop_length)
     #vectorizer1 = feature_extraction.text.TfidfVectorizer()
     #synst=vectorizer1.fit_transform(trainX["synset"].values.astype('U')).toarray()
     #tf_vectorizer =feature_extraction.text.CountVectorizer()
@@ -65,17 +66,17 @@ def main():
     #tf_feature_names = tf_vectorizer.get_feature_names()
     #lda = LDA(n_topics=10, max_iter=5, learning_method='online', learning_offset=50.,random_state=0).fit(tf)
     #lda_train = lda.transform(tf)
-    liwc = liwc_scaler.fit_transform(trainX.ix[:, "WC":"OtherP"])
-    allf = np.hstack((unigrams,))
+    #liwc = liwc_scaler.fit_transform(trainX.ix[:, "WC":"OtherP"])
+    allf = np.hstack((S,))
 
 
-
-    unigrams_t = vectorizer.transform(testX["text"].values.astype("U")).toarray()
+    S = librosa.feature.melspectrogram(x, sr=sr, n_fft=4096, hop_length=hop_length)
+    #unigrams_t = vectorizer.transform(testX["text"].values.astype("U")).toarray()
     #tf_t = tf_vectorizer.transform(testX["text"]).toarray()
     #lda_test = lda.transform(tf_t)
-    liwc_t = liwc_scaler.transform(testX.ix[:, "WC":"OtherP"])
+    #liwc_t = liwc_scaler.transform(testX.ix[:, "WC":"OtherP"])
     #synst_t = vectorizer1.transform(testX["synset"].values.astype('U')).toarray()
-    allf_t = np.hstack((unigrams_t,))
+    allf_t = np.hstack((S_t,))
 
     features = {"All_f_without_synset":(allf,allf_t)}
 
