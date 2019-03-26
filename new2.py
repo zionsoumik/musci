@@ -126,13 +126,7 @@ Y_test = np_utils.to_categorical(y_test, nb_classes)
 # X_test -= mean
 
 #input_dim = X_train.shape[1]
-tokenizer = Tokenizer(nb_words=max_features)
-tokenizer.fit_on_texts(train['text'])
-liwc_scaler = preprocessing.StandardScaler()
-liwc = liwc_scaler.fit_transform(train.ix[:, "TR":"OtherP"])
-liwc_t = liwc_scaler.transform(test.ix[:, "TR":"OtherP"])
-sequences_train = tokenizer.texts_to_sequences(train['text'])
-sequences_test = tokenizer.texts_to_sequences(test['text'])
+S = librosa.feature.melspectrogram(x, sr=sr, n_fft=4096, hop_length=hop_length)
 print('Pad sequences (samples x time)')
 unigrams=sequence.pad_sequences(sequences_train, maxlen=maxlen)
 unigrams_t=sequence.pad_sequences(sequences_test, maxlen=maxlen)
