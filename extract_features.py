@@ -63,7 +63,6 @@ def extract_feature(file_name=None):
 #     return features
 
 
-# Define directory where sound files are stored within '/wav_files_TOTAL/' folder
 root = "C:/Users/deyso/PycharmProjects/sound/mp3folder"
 
 os.chdir(root + '/wavfile/')
